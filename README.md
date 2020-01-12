@@ -1,28 +1,94 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Weather Monster App
 
-## Available Scripts
+## Project setup
+Use the following commands to setup, launch and run the test of application
 
-In the project directory, you can run:
+Clone the public repo with HTTPS `https://github.com/javadmalek/react-redux-hook.git`
 
-### `npm start`
+```
+cd react-redux-hook
+npm install
+npm start
+npm run cypress:open
+```
+open: `http://localhost:3000` 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Compiles and hot-reloads for development `npm start`
+- Compiles and minifies for production `npm run build`
+- Open Cypress to test the application `npm run cypress:open`. In case you want to run the application on a different port, please, update `cypress.json`
+- Lints and fixes files `npm run lint`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+## File structure
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+.
+├── README.md
+├── cypress
+│   ├── fixtures
+│   ├── integration
+│   │   ├── element_test.spec.js
+│   │   └── functionalities.spec.js
+│   ├── plugins
+│   └── support
+├── cypress.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── manifest.json
+└── src
+    ├── app.jsx
+    ├── app.test.js
+    ├── components
+    │   ├── select_city.js.jsx
+    │   ├── show_cities.js.jsx
+    │   └── weather_container.js.jsx
+    ├── error
+    │   └── error_boundary.js.jsx
+    ├── index.css
+    ├── index.js
+    ├── serviceWorker.js
+    └── store
+        └── index.js.jsx
+```
 
-### `npm run build`
+10 directories, 26 files
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Main Components
+- `App` renders as root component and re-use `ErrorBoundary, Store, WeatherContainer` Also, it is a state-less component.
+- `ErrorBoundary` catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
+- `Store`  it is a store for redux which contains the list of `cities` and their actions are `ADD_CITY, REMOVE_CITY`.
+- `WeatherContainer` is the main container which renders the `SelectCity, ShowCities` and managing a state for their comunications. besides, it take in charge of fetch action.
+- `SelectCity` is a stateless component just render the list of cities and call the parent callback.
+- `ShowCities` is stateless component that subscribed to Redux-store and receives the list of cities then display in screen and have an action to remove a city
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-### `npm run build` fails to minify
+## Cypress Test
+There are 3 integration tests as following:
+- `Page Element Test` which contains 
+  - Cheking hompage is up?
+  - Cheking the existance of city select box and its title(Weather Monster)
+  - Select city `Gorgan` and `London` from the list
+- `Functionality Test` which contains
+  - Available endpoint `www.openweathermap.org` API and fetching for London
+  - Trying to add London again and checking that the alert message is open?
+  - Trying to add London and Gorgan and then find&click on remove London ?
+
+## CSS
+- Breakpoint at 1000px, flexbox would renders over column direction
+- `BEM` method used for name conventin
+- some components are buid styled component not all.
+- since it is clearly was mentioned in the task description that CSS and UI would not take into account, I did spend much time for that and it is done as fast as possible.
+
+
+## Other topics
+- babel
+- eslinte
+
+
+## Notes
+- Why Redux is used? because it is clearly asked in the task description otherwise it could even more easier to use contextApi or just passing props.
+- I had a plan to use the fetch hook for retriving the data, but I ran out of time.
+- It is possible to write more test, I just wrote for main boundary cases.
+- no internationalisation
+
