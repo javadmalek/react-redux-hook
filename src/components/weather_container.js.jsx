@@ -5,7 +5,6 @@ import SelectCity from './select_city.js.jsx';
 import ShowCities from './show_cities.js.jsx';
 import { CITY_ACTIONS } from '../store/index.js';
 
-
 const parseData = (data) => camelcaseKeys(data, { deep: true });
 const fToC = (fTemp) => ((fTemp - 32) * (5 / 9));
 
@@ -46,7 +45,7 @@ const WeatherContainer = (props) => {
   };
 
   return (
-    <div>
+    <div className="weather-container">
       <SelectCity selectedCity={selectedCity} onSelectCityChangeFn={onSelectCityChange} />
       <ShowCities />
     </div>
