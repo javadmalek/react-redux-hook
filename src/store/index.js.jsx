@@ -13,7 +13,7 @@ function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case CITY_ACTIONS.ADD_CITY:
       const newCities = [...state.cities, action.newCity];
-      newCities.sort((a, b) => a.max > a.max);
+      newCities.sort((a, b) => (a.max < b.max ? 1 : -1));
       return { ...state, cities: newCities };
 
     case CITY_ACTIONS.REMOVE_CITY:
