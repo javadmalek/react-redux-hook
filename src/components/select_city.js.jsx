@@ -8,6 +8,11 @@ const options = [
   { value: 'gorgan', label: 'Gorgan' },
   { value: 'bangkok', label: 'Bangkok' },
   { value: 'melbourne', label: 'Melbourne' },
+  { value: 'las_vegas', label: 'Las Vegas' },
+  { value: 'turin', label: 'Turin' },
+  { value: 'rome', label: 'Rome' },
+  { value: 'milan', label: 'Milan' },
+  { value: 'london', label: 'London' },
 ];
 
 const SelectCity = ({ selectedCity, onSelectCityChangeFn }) => (
