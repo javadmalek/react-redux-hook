@@ -8,6 +8,7 @@ import './index.css';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 
+const Notfound = () => (<h1>Not found</h1>);
 const rootEl = document.getElementById('root');
 const appRouter = (
   <Router>
