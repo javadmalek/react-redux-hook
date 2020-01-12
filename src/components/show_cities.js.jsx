@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CITY_ACTIONS } from '../store/index.js';
 
@@ -11,8 +11,8 @@ const ShowCities = (props) => {
   }, index) => (
     <div key={index}>
       <span>{label}</span>
-      <span>Max: {max}</span>
-      <span>Min: {min}</span>
+      <span>Max: {max}&#8451;</span>
+      <span>Min: {min}&#8451;</span>
       <button onClick={() => dispatch({ type: CITY_ACTIONS.REMOVE_CITY, value })}>Remove</button>
     </div>
   );

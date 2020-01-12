@@ -1,44 +1,37 @@
-import React, { useState, useEfect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { useSelector, useDispatch } from 'react-redux';
-import { CITY_ACTIONS } from '../store/index.js';
 
 const options = [
   { value: 'tehran', label: 'Tehran' },
   { value: 'berlin', label: 'Berlin' },
   { value: 'gorgan', label: 'Gorgan' },
-  { value: 'bangkog', label: 'Bangkog' },
+  { value: 'bangkok', label: 'Bangkok' },
   { value: 'melbourne', label: 'Melbourne' },
 ];
 
-const SelectCity = (props) => {
-  const { cities } = useSelector((state) => state);
-  const dispatch = useDispatch();
+const SelectCity = ({ selectedCity, onSelectCityChangeFn }) => (
+  <div>
+    <h1>Weather Monster</h1>
+    <Select
+      value={selectedCity}
+      onChange={onSelectCityChangeFn}
+      options={options}
+    />
+  </div>
+);
 
-  const [selectedItem, setSelectedItem] = useState(null);
+SelectCity.propTypes = {
+  onSelectCityChangeFn: PropTypes.func,
+  selectedCity: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+};
 
-  const checkIsCitiyExist = (selectedItem) => cities.some(({ value }) => value === selectedItem.value);
-
-  const onSelectedItemChange = (selectedItem) => {
-    console.log('Option selected:', selectedItem);
-    if (checkIsCitiyExist(selectedItem)) {
-      alert(`${selectedItem.label} is already selected!...`);
-    } else {
-      setSelectedItem(selectedItem);
-      dispatch({ type: CITY_ACTIONS.ADD_CITY, newCity: { ...selectedItem, max: 5, min: 0 } });
-    }
-  };
-
-  return (
-    <div>
-      <h1>Weather Monster</h1>
-      <Select
-        value={selectedItem}
-        onChange={onSelectedItemChange}
-        options={options}
-      />
-    </div>
-  );
+SelectCity.defaultProps = {
+  onSelectCityChangeFn: () => {},
+  selectedCity: null,
 };
 
 export default SelectCity;
