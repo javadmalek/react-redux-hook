@@ -28,7 +28,6 @@ const WeatherContainer = (props) => {
           type: CITY_ACTIONS.ADD_CITY,
           newCity,
         });
-        console.log('parseData(data) >>>', parseData(data));
         return parseData(data);
       })
       .catch((error) => console.log(error));
